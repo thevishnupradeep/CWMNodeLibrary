@@ -1,0 +1,28 @@
+{
+  "name": "codewatchman-node",
+  "version": "0.0.1",
+  "description": "Code Watchman Node js library",
+  "main": "index.js",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "mocha": "^7.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thevishnupradeep/CWMNodeLibrary.git"
+  },
+  "author": "Code Watchman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thevishnupradeep/CWMNodeLibrary/issues"
+  },
+  "homepage": "https://github.com/thevishnupradeep/CWMNodeLibrary#readme"
+}
