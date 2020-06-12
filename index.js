@@ -1,28 +1,34 @@
 const fetch = require('node-fetch');
 
-/**
- * finalURL = '{}/makeLog'.format(self.url)
-        response = requests.post(
-            finalURL,
-            json={
-                "tokenId": self.tokenId,
-                "accessToken": self.accessToken,
-                "message": log_data.message,
-                "payload": payload
-            },
-            headers={
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        )
- */
-
 // const URL = 'http://localhost:8080/v1'
 const URL = 'https://app.codewatchman.com/v1'
 class CodeWatchMan {
     constructor(tokenId, accessToken) {
         this.tokenId = tokenId;
         this.accessToken = accessToken;
+    }
+
+    validate() {
+        return new Promise((resolve, reject) => {
+            fetch(`${URL}/token/validate`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    "tokenId": this.tokenId,
+                    "accessToken": this.accessToken
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(json => {
+                console.log(json);
+                this.isValidated = true;
+                resolve(json);
+            })
+            .catch(err => reject(err));
+        });
     }
 
     sendLog({ message, logCode, payload, logId }) {
