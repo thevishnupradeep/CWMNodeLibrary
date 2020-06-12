@@ -17,45 +17,20 @@ const fetch = require('node-fetch');
         )
  */
 
-// const URL = 'http://localhost:5001/codewatchman/us-central1'
-const URL = 'https://us-central1-codewatchman.cloudfunctions.net'
+// const URL = 'http://localhost:8080/v1'
+const URL = 'https://app.codewatchman.com/v1'
 class CodeWatchMan {
-
-    validateAsync(tokenId, accessToken) {
+    constructor(tokenId, accessToken) {
         this.tokenId = tokenId;
         this.accessToken = accessToken;
-
-        return new Promise((resolve, reject) => {
-            fetch(`${URL}/validateToken`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    "tokenId": this.tokenId,
-                    "accessToken": this.accessToken
-                }),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            })
-            .then(res => res.json())
-            .then(json => {
-                console.log(json);
-                this.isValidated = true;
-                resolve(json);
-            })
-            .catch(err => reject(err));
-        });
     }
 
-    sendLogAsync({ message, payload, logId }) {
+    sendLog({ message, logCode, payload, logId }) {
         return new Promise((resolve, reject) => {
-            if (!this.isValidated) {
-                reject(new Error("Token not validated. Please call CodeWatchMan.validateAsync(tokenId, accessToken) first."))
-            }
-
-            fetch(`${URL}/makeLog`, {
+            fetch(`${URL}/log`, {
                 method: 'POST',
                 body: JSON.stringify({
+                    "logCode": logCode,
                     "tokenId": this.tokenId,
                     "accessToken": this.accessToken,
                     "message": message,

@@ -73,3 +73,6 @@ glue/modules/build/
 
 # Lambda Layer
 layers/*/python
+
+#custom
+dev.js
