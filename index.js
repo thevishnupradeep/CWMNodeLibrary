@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 // const URL = 'http://localhost:8080/v1'
-const URL = 'https://app.codewatchman.com/v1'
+const URL = 'https://api.codewatchman.com/v1'
 class CodeWatchMan {
     constructor(tokenId, accessToken) {
         this.tokenId = tokenId;
